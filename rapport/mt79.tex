@@ -1,0 +1,51 @@
+\documentclass[a4paper,10pt]{report}
+\usepackage[utf8]{inputenc}
+
+% Title Page
+\title{Multiplication des matrcies: Algorithme de Strassen}
+\author{Nicolas Iung, Aurelien Blais}
+
+
+\begin{document}
+\maketitle
+
+\chapter{Algorithme de Strassen}
+\paragraph{Question 1}
+8 multiplications :
+\begin{equation}
+ c_{11} = a_{11}*b_{11}+a_{12}*b_{21}
+\end{equation}
+\begin{equation}
+ c_{12} = a_{11}*b_{11}+a_{12}*b_{22}
+\end{equation}
+\begin{equation}
+ c_{21} = a_{21}*b_{11}+a_{22}*b_{21}
+\end{equation}
+\begin{equation}
+ c_{22} = a_{21}*b_{12}+a_{22}*b_{22}
+\end{equation}
+\paragraph{Question 2}
+Développons les formules de Strassen :\\
+
+
+\begin{math}
+ c_{11} = q_1-q_3-q_5+q_7 = (a_{11}-a_{22})b_{22}-a_{22}(b_{11}+b_{21})-(a_{11}+a_{22})(b_{22}-b_{11})+(a_{12}+a_{22})(b_{21}+b_{22}) \\
+ c_{11} 
+\end{math}
+
+\bigskip
+\begin{math}
+ c_{12} = q_4-q_1 = a_{11}(b_{12}+b_{22})-((a_{11}-a_{22})b_{22})
+\end{math}
+
+\bigskip
+\begin{math}
+ c_{21} = q_2+q_3 = (a_{21}-a_{22})b_{11}+a_{22}(b_{11}+b_{21})
+\end{math}
+
+\bigskip
+\begin{math}
+ c_{22} = -q_2-q_4+q_5+q_6 = -(a_{21}-a_{22})b_{11}-a_{11}(b_{12}+b_{22})+(a_{11}+a_{22})(b_{22}-b_{11})+(a_{11}+a_{21})(b_{11}+b_{12})
+\end{math}
+
+\end{document}          
