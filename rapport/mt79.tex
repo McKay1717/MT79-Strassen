@@ -28,6 +28,7 @@ Développons les formules de Strassen :\\
 
 
 \begin{math}
+Erreur Q1 ?\\
  c_{11} = q_1-q_3-q_5+q_7 = (a_{11}-a_{22})b_{22}-a_{22}(b_{11}+b_{21})-(a_{11}+a_{22})(b_{22}-b_{11})+(a_{12}+a_{22})(b_{21}+b_{22}) \\
  c_{11} = a_{11}*b_{22}-a_{22}*b_{22}-(a_{22}*b_{11}+b_{21}*a_{22})-(a_{11}*b_{22}-a_{11}*b_{11}+a_{22}*b_{22}-a_{22}*b_{11})+a_{12}*b_{21}+a_{12}*b_{22}+a_{22}*b_{21}+a_{22}*b_{22}\\
  c_{11} = a_{11}*b_{22}-a_{22}*b_{22}-a_{22}*b_{11}-b_{21}*a_{22}-a_{11}*b_{22}+a_{11}*b_{11}-a_{22}*b_{22}+a_{22}*b_{11}+a_{12}*b_{21}+a_{12}*b_{22}+a_{22}*b_{21}+a_{22}*b_{22}\\
@@ -36,17 +37,27 @@ Développons les formules de Strassen :\\
 
 \bigskip
 \begin{math}
- c_{12} = q_4-q_1 = a_{11}(b_{12}+b_{22})-((a_{11}-a_{22})b_{22})
+ c_{12} = q_4-q_1 = a_{11}(b_{12}+b_{22})-((a_{11}-a_{12})b_{22}\\
+ c_{12} = a_{11}b_{12}+a_{11}b_{22}-a_{11}b_{22}+a_{12}b_{22}\\
+ c_{12} = a_{11}b_{12}+a_{12}b_{22}\\
+ Erreur ?
 \end{math}
 
 \bigskip
 \begin{math}
- c_{21} = q_2+q_3 = (a_{21}-a_{22})b_{11}+a_{22}(b_{11}+b_{21})
+ c_{21} = q_2+q_3 = (a_{21}-a_{22})b_{11}+a_{22}(b_{11}+b_{21})\\
+ c_{21} = a_{21}b_{11} -a_{22}b_{11} + a_{22}b_{11} +a_{22}b_{21}\\
+ c_{21} = a_{21}*b_{11}+a_{22}*b_{21}
 \end{math}
 
 \bigskip
 \begin{math}
- c_{22} = -q_2-q_4+q_5+q_6 = -(a_{21}-a_{22})b_{11}-a_{11}(b_{12}+b_{22})+(a_{11}+a_{22})(b_{22}-b_{11})+(a_{11}+a_{21})(b_{11}+b_{12})
+ c_{22} = -q_2-q_4+q_5+q_6 = -(a_{21}-a_{22})b_{11}-a_{11}(b_{12}+b_{22})+(a_{11}+a_{22})(b_{22}-b_{11})+(a_{11}+a_{21})(b_{11}+b_{12})\\
+ c_{22} = a_{21}*b_{11}+a_{22}b_{11}-a_{11}b_{12}-a_{11}b_{12}+a_{11}b_{22}-a_{11}b_{11}+a_{22}b_{22}-a{22}b_{11}+a_{11}b_{11}+a_{11}b_{12}+a_{21}b_{11}+b_{21}b_{12}\\
+ c_{22} = a_{21}*b_{12}+a_{22}*b_{22}\\
 \end{math}
+Donc on retrouve bien C
 
+\paragraph{Question 3}
+Au vue de la question 2, on peut conclure que nous ne fesons qu'une multiplication par coefficient $q$ donc un total de 7 multiplication. Cela nous fais donc économiser une multiplication. 
 \end{document}          
