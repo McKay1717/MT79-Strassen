@@ -5,7 +5,6 @@
 \title{Multiplication des matrcies: Algorithme de Strassen}
 \author{Nicolas Iung, Aurelien Blais}
 
-
 \begin{document}
 \maketitle
 
@@ -30,7 +29,9 @@ Développons les formules de Strassen :\\
 
 \begin{math}
  c_{11} = q_1-q_3-q_5+q_7 = (a_{11}-a_{22})b_{22}-a_{22}(b_{11}+b_{21})-(a_{11}+a_{22})(b_{22}-b_{11})+(a_{12}+a_{22})(b_{21}+b_{22}) \\
- c_{11} 
+ c_{11} = a_{11}*b_{22}-a_{22}*b_{22}-(a_{22}*b_{11}+b_{21}*a_{22})-(a_{11}*b_{22}-a_{11}*b_{11}+a_{22}*b_{22}-a_{22}*b_{11})+a_{12}*b_{21}+a_{12}*b_{22}+a_{22}*b_{21}+a_{22}*b_{22}\\
+ c_{11} = a_{11}*b_{22}-a_{22}*b_{22}-a_{22}*b_{11}-b_{21}*a_{22}-a_{11}*b_{22}+a_{11}*b_{11}-a_{22}*b_{22}+a_{22}*b_{11}+a_{12}*b_{21}+a_{12}*b_{22}+a_{22}*b_{21}+a_{22}*b_{22}\\
+ c_{11} = a_{11}*b_{11}-a_{22}*b_{22}+a_{12}*b_{22}+a_{12}*b_{21}
 \end{math}
 
 \bigskip
