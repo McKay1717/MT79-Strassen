@@ -1,5 +1,6 @@
 package org.naritaya.utils;
 
+import java.util.Arrays;
 import java.util.Random;
 
 
@@ -40,9 +41,16 @@ public abstract class Matrix {
      * @param matrix A 2D float array
      *
      * Set the given array as the matrix content
+     * @throws IllegalArgumentException
      */
-    public void set(float[][] matrix) {
+    public void set(float[][] matrix) throws IllegalArgumentException {
+        if (matrix.length != width)
+            throw new IllegalArgumentException();
         this.matrix = matrix;
+    }
+
+    public float[][] get() {
+        return matrix;
     }
 
     /**
@@ -93,13 +101,7 @@ public abstract class Matrix {
     public float[] getRow(int index) throws IndexOutOfBoundsException {
         if (index >= this.height)
             throw new IndexOutOfBoundsException("Index " + index + " out of bound (" + this.height + ")");
-
-        float[] result = new float[this.height];
-
-        for (int i = 0; i < this.width; i++)
-            result[i] = this.matrix[index][i];
-
-        return result;
+        return Arrays.copyOfRange(this.matrix[index], 0, this.width);
     }
 
     /**

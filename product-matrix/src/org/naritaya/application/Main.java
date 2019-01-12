@@ -3,10 +3,13 @@ package org.naritaya.application;
 public class Main {
     public static void main(String[] args) {
         // Initialize the matrix handler by giving the SquareMatrix size
-        SquareMatrixHandler mHandler = new SquareMatrixHandler(3);
+        SquareMatrixHandler mHandler = new SquareMatrixHandler(4);
 
         // Execute algorithms
-        mHandler.benchmark();
+        //mHandler.perform();
+
+        // Execute benchmark
+        SquareMatrixHandler.benchmark();
     }
 }
 
