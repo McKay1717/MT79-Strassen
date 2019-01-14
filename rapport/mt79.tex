@@ -57,4 +57,70 @@ Les calculs effectués en partant des équations résultantes des formules de St
 
 \paragraph{Question 3}
 Au vue de la question 2, on peut conclure que nous ne fesons qu'une multiplication par coefficient $q$ donc un total de 7 multiplication. Cela nous fais donc économiser une multiplication. 
+
+\chapter{Produit matriciel par blocs}
+\paragraph{Question 1}
+En appliquant le calcul par blocs :
+\begin{equation}
+ c_{11} = 1 * 1 + 2 * 2 + 0 * 0 + 1 * 1 = 6
+\end{equation}
+\begin{equation}
+ c_{12} = 1 * (-1) + 2 * 0 + 0 * 1 + 1 * 0 = -1
+\end{equation}
+\begin{equation}
+c_{13} = 1 * 0 + 2 * 1 + 0 * 1 + 1 * 0 = 2
+\end{equation}
+\begin{equation}
+c_{14} = 1 * 1 + 2 * 1 + 0 * 0 + 1 * (-1) = 2
+\end{equation}
+\begin{equation}
+ c_{21} = 3 * 1 + 4 * 2 + (-1) * 0 + 1 * 1 = 12
+\end{equation}
+\begin{equation}
+c_{22} = 3 * (-1) + 4 * 0 + (-1) * 1 + 1 * 0 = -4
+\end{equation}
+\begin{equation}
+c_{23} = 3 * 0 + 4 * 1 + (-1) * 1 + 1 * 0 = 3
+\end{equation}
+\begin{equation}
+c_{24} = 3 * 1 + 4 * 1 + (-1) * 0 + 1 * (-1) = 6
+\end{equation}
+\begin{equation}
+c_{31} = 1 * 1 + 0 * 2 + 1 * 0 + 2 * 1 = 3
+\end{equation}
+\begin{equation}
+c_{32} = 1 * (-1) + 0 * 0 + 1 * 1 + 2 * 0 = 0
+\end{equation}
+\begin{equation}
+c_{33} = 1 * 0 + 0 * 1 + 1 * 1 + 2 * 0 = 1
+\end{equation}
+\begin{equation}
+c_{34} = 1 * 1 + 0 * 1 + 1 * 0 + 2 * (-1) = -1
+\end{equation}
+\begin{equation}
+c_{41} = 0 * 1 + 1 * 2 + 3 * 0 + 4 * 1 = 6
+\end{equation}
+\begin{equation}
+c_{42} = 0 * (-1) + 1 * 0 + 3 * 1 + 4 * 0 = 3
+\end{equation}
+\begin{equation}
+c_{43} = 0 * 0 + 1 * 1 + 3 * 1 + 4 * 0 = 4
+\end{equation}
+\begin{equation}
+c_{43} = 0 * 0 + 1 * 1 + 3 * 1 + 4 * 0 = 4
+\end{equation}
+Donc 
+\begin{math}
+C = \begin{pmatrix}
+  & c_1 & c_2 & c_3 & c_4 \\
+1 & 6 & -1 & 2 & 2 \\
+2 & 12 & -4 & 3 & 6 \\
+3 & 3 & 0 & 1 & -1 \\
+4 & 6 & 3 & 4 & -3
+\end{pmatrix}
+\end{math}
+
+
+
+
 \end{document}          
