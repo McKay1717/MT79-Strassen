@@ -1,8 +1,9 @@
-\documentclass[a4paper,10pt]{report}
+\documentclass[a4paper,10pt,margin=2in]{report}
 \usepackage[utf8]{inputenc}
+\usepackage{amsmath}
 
 % Title Page
-\title{Multiplication des matrcies: Algorithme de Strassen}
+\title{Multiplication des matrices: Algorithme de Strassen}
 \author{Nicolas Iung, Aurelien Blais}
 
 \begin{document}
@@ -25,38 +26,34 @@
 \end{equation}
 \paragraph{Question 2}
 Développons les formules de Strassen :\\
-
-
-\begin{math}
-Erreur Q1 ?\\
- c_{11} = q_1-q_3-q_5+q_7 = (a_{11}-a_{22})b_{22}-a_{22}(b_{11}+b_{21})-(a_{11}+a_{22})(b_{22}-b_{11})+(a_{12}+a_{22})(b_{21}+b_{22}) \\
- c_{11} = a_{11}*b_{22}-a_{22}*b_{22}-(a_{22}*b_{11}+b_{21}*a_{22})-(a_{11}*b_{22}-a_{11}*b_{11}+a_{22}*b_{22}-a_{22}*b_{11})+a_{12}*b_{21}+a_{12}*b_{22}+a_{22}*b_{21}+a_{22}*b_{22}\\
- c_{11} = a_{11}*b_{22}-a_{22}*b_{22}-a_{22}*b_{11}-b_{21}*a_{22}-a_{11}*b_{22}+a_{11}*b_{11}-a_{22}*b_{22}+a_{22}*b_{11}+a_{12}*b_{21}+a_{12}*b_{22}+a_{22}*b_{21}+a_{22}*b_{22}\\
- c_{11} = a_{11}*b_{11}-a_{22}*b_{22}+a_{12}*b_{22}+a_{12}*b_{21}
-\end{math}
+\begin{align*}
+c_{11} &= q_{1} - q_{3} - q_{5} + q_{7}\\
+&= [a_{11}b_{22} - a_{12}b_{22}] - [a_{22}b_{11} + a_{22}b_{21}] - [- a_{11}b_{11} + a_{11}b_{22} - a_{22}b_{11} + a_{22}b_{22}] + [a_{12}b_{21} - a_{12}b_{22} + a_{22}b_{21} - a_{22}b_{22}]\\
+&=  - [- a_{11}b_{11} + a_{22}b_{22}] + [a_{12}b_{21} - a_{22}b_{22}]\\
+&= a_{11}b_{11} + a_{12}b_{21}
+\end{align*}
 
 \bigskip
-\begin{math}
- c_{12} = q_4-q_1 = a_{11}(b_{12}+b_{22})-((a_{11}-a_{12})b_{22}\\
- c_{12} = a_{11}b_{12}+a_{11}b_{22}-a_{11}b_{22}+a_{12}b_{22}\\
- c_{12} = a_{11}b_{12}+a_{12}b_{22}\\
- Erreur ?
-\end{math}
+\begin{align*}
+c_{12} &= a_{11}(b_{12} + b_{22}) - (a_{11} - a_{12})b_{22}\\
+&= a_{11}b_{12} + a_{11}b_{22} - a_{11}b_{22} + a_{12}b_{22}\\
+&= a_{11}b_{12} + a_{12}b_{22}
+\end{align*}
 
 \bigskip
-\begin{math}
- c_{21} = q_2+q_3 = (a_{21}-a_{22})b_{11}+a_{22}(b_{11}+b_{21})\\
- c_{21} = a_{21}b_{11} -a_{22}b_{11} + a_{22}b_{11} +a_{22}b_{21}\\
- c_{21} = a_{21}*b_{11}+a_{22}*b_{21}
-\end{math}
+\begin{align*}
+c_{21} &= (a_{21} - a_{22})b_{11} + a_{22}(b_{11} + b_{21})\\
+&= a_{21}b_{11} - a_{22}b_{11} + a_{22}b_{11} + a_{22}b_{21}\\
+&= a_{21}b_{11} + a_{22}b_{21}
+\end{align*}
 
 \bigskip
-\begin{math}
- c_{22} = -q_2-q_4+q_5+q_6 = -(a_{21}-a_{22})b_{11}-a_{11}(b_{12}+b_{22})+(a_{11}+a_{22})(b_{22}-b_{11})+(a_{11}+a_{21})(b_{11}+b_{12})\\
- c_{22} = a_{21}*b_{11}+a_{22}b_{11}-a_{11}b_{12}-a_{11}b_{12}+a_{11}b_{22}-a_{11}b_{11}+a_{22}b_{22}-a{22}b_{11}+a_{11}b_{11}+a_{11}b_{12}+a_{21}b_{11}+b_{21}b_{12}\\
- c_{22} = a_{21}*b_{12}+a_{22}*b_{22}\\
-\end{math}
-Donc on retrouve bien C
+\begin{align*}
+c_{22} &= -(a_{21} - a_{22})b_{11} - a_{11}(b_{12} + b_{22}) + (a_{11} + a_{22})(b_{22} - b_{11}) + (a_{11} + a_{21})(b_{11} + b_{12})\\
+&= a_{21}b_{11} + a_{22}b_{11} - a_{11}b_{12} - a_{11}b_{12} + a_{11}b_{22} - a_{11}b_{11} + a_{22}b_{22} - a{22}b_{11} + a_{11}b_{11} + a_{11}b_{12} + a_{21}b_{11} + b_{21}b_{12}\\
+&= a_{21}b_{12} + a_{22}b_{22}\\
+\end{align*}
+Les calculs effectués en partant des équations résultantes des formules de Strassen donnent bien le résultat de l'algorithme naïf de multiplication matricielle.
 
 \paragraph{Question 3}
 Au vue de la question 2, on peut conclure que nous ne fesons qu'une multiplication par coefficient $q$ donc un total de 7 multiplication. Cela nous fais donc économiser une multiplication. 
