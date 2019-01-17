@@ -68,7 +68,7 @@ public class SquareMatrixHandler {
         SquareMatrixHandler mHandler;
         long beginTime, endTime, naiveTime, strassenTime;
 
-        for(int i = 10; i < 1000; i += 100) {
+        for(int i = 10; i < 200; i += 20) {
             mHandler = new SquareMatrixHandler(i);
 
             beginTime = System.nanoTime();
