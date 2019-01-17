@@ -1,8 +1,3 @@
 .byebug_history
-.idea/encodings.xml
-.idea/misc.xml
-.idea/modules.xml
-.idea/product-matrix-ruby.iml
-.idea/workspace.xml
-Gemfile
-Gemfile.lock
+.idea/*
+
