@@ -52,7 +52,7 @@ class StrassenAlgorithm
     rows = []
 
     m_size = @a_matrix.size / 2
-    m_size_odd = @a_matrix.size.odd? ? m_size + 1: m_size
+    m_size_odd = @a_matrix.size.odd? ? m_size + 1 : m_size
 
     (0..(m_size_odd - 1)).each { |row| rows.push c11.row(row).to_a[0, m_size_odd] + c12.row(row).to_a[0, m_size] }
     (0..(m_size - 1)).each { |row| rows.push c21.row(row).to_a[0, m_size_odd] + c22.row(row).to_a[0, m_size] }

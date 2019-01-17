@@ -13,7 +13,6 @@ class MatrixHandler
   #
   # @param [int] Size The size of the SquareMatrix
   def initialize(size)
-
     # Uncomment these line in order to generate random matrixes
     @a_matrix = SquareMatrix.new(size).randomize
     @b_matrix = SquareMatrix.new(size).randomize
@@ -78,7 +77,7 @@ class MatrixHandler
     # Start the benchmark
     Benchmark.bm(15) do |row|
       # Sizes are 2^i
-      Array.new(size) { |i| 2 ** i }.each do |i|
+      Array.new(size) { |i| 2**i }.each do |i|
         # Init matrix
         @a_matrix = SquareMatrix.new i
         @b_matrix = SquareMatrix.new i
@@ -88,8 +87,8 @@ class MatrixHandler
         @b_matrix.randomize
 
         # Execute and report both algorithms
-        row.report("Naive (#{i})") { StandardAlgorithm.new(@a_matrix, @b_matrix).perform }
-        row.report("Strassen (#{i})") { StrassenAlgorithm.new(@a_matrix, @b_matrix).perform }
+        row.report("Naive-#{i}") { StandardAlgorithm.new(@a_matrix, @b_matrix).perform }
+        row.report("Strassen-#{i}") { StrassenAlgorithm.new(@a_matrix, @b_matrix).perform }
         bar.increment!
       end
     end

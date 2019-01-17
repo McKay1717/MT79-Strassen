@@ -26,7 +26,6 @@ class SquareMatrix
     @size = size
   end
 
-
   # Randomize
   #
   # Randomize values (range 0 to 100)
@@ -54,8 +53,16 @@ class SquareMatrix
     2.times.each do |row|
       2.times.each do |col|
         temp = SquareMatrix.new m_size
-        rows = data.to_a.slice(row * m_size, (row + 1) * m_size).map { |i| i.slice(col * m_size, (col + 1) * m_size) }
-        rows.each_with_index { |row, i| row.each_with_index { |col, j| temp[i, j] = col } }
+
+        rows = data.to_a.slice(row * m_size, (row + 1) * m_size).map do |i|
+          i.slice(col * m_size, (col + 1) * m_size)
+        end
+
+        rows.each_with_index do |row_i, i|
+          row_i.each_with_index do |col_i, j|
+            temp[i, j] = col_i
+          end
+        end
         result.push temp
       end
     end
@@ -102,7 +109,6 @@ class SquareMatrix
     r.data = data - other.data
     r
   end
-
 
   # *
   #
