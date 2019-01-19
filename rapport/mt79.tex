@@ -4,7 +4,7 @@
 
 % Title Page
 \title{Multiplication des matrices: Algorithme de Strassen}
-\author{Nicolas Iung, Aurelien Blais}
+\author{Nicolas Iung, Aurélien Blais}
 
 \begin{document}
 \maketitle
@@ -56,7 +56,7 @@ c_{22} &= -(a_{21} - a_{22})b_{11} - a_{11}(b_{12} + b_{22}) + (a_{11} + a_{22})
 Les calculs effectués en partant des équations résultantes des formules de Strassen donnent bien le résultat de l'algorithme naïf de multiplication matricielle.
 
 \paragraph{Question 3}
-Au vue de la question 2, on peut conclure que nous ne fesons qu'une multiplication par coefficient $q$ donc un total de 7 multiplication. Cela nous fais donc économiser une multiplication. 
+Au vue de la question 2, on peut conclure que nous ne faisons qu'une multiplication par coefficient $q$ donc un total de 7 multiplication. Cela nous fais donc économiser une multiplication. 
 
 \chapter{Produit matriciel par blocs}
 \paragraph{Question 1}
@@ -120,7 +120,142 @@ C = \begin{pmatrix}
 \end{pmatrix}
 \end{math}
 
+\chapter{Algorithme de Strassen}
+\paragraph{Question 1}
+Formules de Strassen par blocs
 
+\begin{equation}
+q_1 = (A_{11} - A_{12}) * B_{22}
+\end{equation}
 
+\begin{equation}
+q_2 = (A_{21} - A_{22}) * B_{11}
+\end{equation}
+
+\begin{equation}
+q_3 = A_{22} * (B_{11} + B_{21})
+\end{equation}
+
+\begin{equation}
+q_4 = A_{11} * (B_{12} + B_{22})
+\end{equation}
+
+\begin{equation}
+q_5 = (A_{11} + A_{22}) * (B_{22} - B_{11})
+\end{equation}
+
+\begin{equation}
+q_6 = (A_{11} + A_{21}) * (B_{11} + B_{12})
+\end{equation}
+
+\begin{equation}
+q_7 = (A_{11} + A_{22}) * (B_{21} + B_{22})
+\end{equation}
+
+\paragraph{Question 2}
+Nombre de multiplications pour une matrice $2^k$ * $2^k$\\
+
+% La franchement, le raisonnement est à chier. Je pense que ce qui était attendu être plus une récurrence, j'ai pas réussi à la trouver (sans doute parce que je suis de base pas convaincu de la formule)
+
+Comme vu précédemment, dans le cas de matrices de taille $2^1$, on effectue 7 multiplications, correspondant aux calculs des coefficients $q$.\\
+
+L'algorithme étant récursif, chaque étape nécessite le calcul des coefficients $q$ et effectue donc 7 multiplications.\\
+
+On peut donc en déduire que dans le cas de matrices de taille $2^2$, nous effectuerons 7 * 7 multiplications, correspondant au 7 itérations des coefficients $q$ pour les matrices de taille $2^1$ et 7 itérations pour les matrices de taille $2^2$.\\
+
+On peut donc en déduire un cas général, de forme $u_k = 7u_{k-1}$
+
+\paragraph{Question 3}
+Valeur de $u_1$\\
+
+Pour $u_1$, nous ne calculons qu'une fois les coefficients $q$, soit 7 multiplications, $u_1 = 7$
+
+\paragraph{Question 4}
+Déduire $u_k = 7^k$\\
+
+Comme vu précédemment à la question 2, chaque itération demande d'effectuer 7 multiplications et dans le cas de $u_1$, nous avons aussi besoin de 7 multiplications.\\
+
+\begin{equation*} 
+\prod_{i=1}^k 7
+= 7^k
+\end{equation*}
+
+\paragraph{Question 5}
+Montrer que $u_k = n^{\frac{ln(7)}{ln(2)}} \simeq n^{2,81}$\\
+
+\begin{align*}
+u_k = 7^k\\
+\iff 7^k = n ^ \alpha
+\end{align*}
+
+\begin{align*}
+ln(7) &= \alpha ln(n)\\
+\iff ln(7) &= \alpha ln(2)\\
+\iff\alpha &= \frac{ln(7)}{ln(2)}\\
+\\
+u_k &= n^{\frac{ln(7)}{ln(2)}}
+\end{align*}
+
+% Ils ont fait le raisonnement en fonction de k, tel que n = 2^k. La question demande d'exprimer en fonction de n, j'ai donc corrigé
+\paragraph{Question 6}
+Nombre de multiplications pour la méthode classique\\
+
+Pour la multiplication classique de deux matrices $A$ x $B$ de tailles $n$ x $n$, pour une colonne $i$ et une ligne $j$, chaque élément $u_{ij}$ est la somme du produit de chaque éléments de la ligne et de la colonne.\\
+
+Exemple :
+\begin{math}
+A : \begin{pmatrix}
+a &b\\
+c &d\\
+\end{pmatrix}
+B : \begin{pmatrix}
+e &f\\
+g &h\\
+\end{pmatrix}
+Resultat : \begin{pmatrix}
+a*e + b * g &a*f + b*h\\
+c*e + d * g &c*f + d*h\\
+\end{pmatrix}
+\end{math}\\
+
+On remarque alors que le nombre de multiplication pour chaque éléments correspond à la taille de la matrice. Il est ensuite répété pour chaque lignes et pour chaque colonnes.
+
+\begin{align*}
+n*n*n = \boldsymbol{n^3}
+\end{align*}
+
+\paragraph{Question 7}
+Comparatif entre les algorithmes\\
+
+Pour l'algorithme classique :
+\begin{align*}
+n^3 = 128^3 = 2 097 152
+\end{align*}
+
+Pour l'algorithme de Strassen :
+\begin{align*}
+128 &= 2^7\\
+\iff u_7 &= 7^7 = 823 543
+\end{align*}
+
+L'économie réalisée est donc de $2 097 152 - 823543 = 1 273 609$ multiplications
+
+\chapter{Implémentation}
+Le benchmarking de l'algorithme à été effectué en executant les deux algorithmes sur des tableaux de tailles $2^k$. Le résultat est le suivant.\\
+
+% Si t'as une idée d'opti, le code est sur le repo. J'ai tenté à coup d'Azure functions, ça reste délirant
+% Le tableau dépasse du PDF, je sais pas si c'est possible de faire mieux, ou s'il faut le split
+$\begin{array}{ *{13}{c} }
+k & 1 & 2 & 4 & 8 & 16 & 32 & 64 & 128 & 256 & 512 & 1024 & 2048 \\
+Classique & 0,000042 & 0,000039 & 0,000118 & 0,000729 & 0,005180 & 0,037036 & 0,269134 & 2,302152 & 18,434917 & 148,468258 & 1143,45661 & 9189,38358 \\
+Strassen & 0,000010 & 0,000161 & 0,001028 & 0,008187 & 0,051670 & 0,361173 & 2,587751 & 18,336071 & 129,776649 & 878,765119 & 6224,82734 & 42726,193543
+\end{array}$
+\\
+
+Selon nos données, Strassen ne semble jamais surpasser l'algorithme classique. Au vu de ce résultat, nous pouvons déterminer que l'implémentation de notre algorithme souffre d'un problème d'optimisation, notamment dans l'initialisation des matrices de taille $2^{k-1}$\\
+
+L'algorithme de Strassen n'est utile que sur des matrices d'une taille suffisamment important. Pour des tailles plus petite, il est alors plus intéressant d'utiliser l'algorithme de multiplication classique.\\
+
+Selon Wikipedia, il existe des algorithmes théoriquement plus performant que celui de Strassen, avec par exemple l'algorithme de Coppersmith-Winograd ayant une complexité en $O(n^{2,376})$. Cet algorithme n'est cependant pas utilisé, du fait qu'il ne serait optimal que sur des matrices ayant une taille gigantesque.
 
 \end{document}          
