@@ -26,19 +26,29 @@
 \end{equation}
 \paragraph{Question 2}
 Développons les formules de Strassen :\\
-\begin{align*}
-c_{11} &= q_{1} - q_{3} - q_{5} + q_{7}\\
-&= [a_{11}b_{22} - a_{12}b_{22}] - [a_{22}b_{11} + a_{22}b_{21}] - [- a_{11}b_{11} + a_{11}b_{22} - a_{22}b_{11} + a_{22}b_{22}] + [a_{12}b_{21} - a_{12}b_{22} + a_{22}b_{21} - a_{22}b_{22}]\\
-&=  - [- a_{11}b_{11} + a_{22}b_{22}] + [a_{12}b_{21} - a_{22}b_{22}]\\
-&= a_{11}b_{11} + a_{12}b_{21}
-\end{align*}
+\begin{equation*}
+c_{11} = q_{1} - q_{3} - q_{5} + q_{7}\\
+\end{equation*}
+\begin{equation*}
+ = [a_{11}b_{22} - a_{12}b_{22}] - [a_{22}b_{11} + a_{22}b_{21}] - [- a_{11}b_{11} + a_{11}b_{22} - a_{22}b_{11} + a_{22}b_{22}] + [a_{12}b_{21} - a_{12}b_{22} + a_{22}b_{21} - a_{22}b_{22}]\\
+ \end{equation*}
+ \begin{equation*}
+ =  - [- a_{11}b_{11} + a_{22}b_{22}] + [a_{12}b_{21} - a_{22}b_{22}]\\
+ \end{equation*}
+ \begin{equation*}
+ = a_{11}b_{11} + a_{12}b_{21}
+\end{equation*}
 
 \bigskip
-\begin{align*}
-c_{12} &= a_{11}(b_{12} + b_{22}) - (a_{11} - a_{12})b_{22}\\
-&= a_{11}b_{12} + a_{11}b_{22} - a_{11}b_{22} + a_{12}b_{22}\\
-&= a_{11}b_{12} + a_{12}b_{22}
-\end{align*}
+\begin{equation*}
+c_{12} = a_{11}(b_{12} + b_{22}) - (a_{11} - a_{12})b_{22}\\
+\end{equation*}
+\begin{equation*} 
+= a_{11}b_{12} + a_{11}b_{22} - a_{11}b_{22} + a_{12}b_{22}\\
+\end{equation*}
+\begin{equation*}
+= a_{11}b_{12} + a_{12}b_{22}
+\end{equation*}
 
 \bigskip
 \begin{align*}
@@ -48,11 +58,15 @@ c_{21} &= (a_{21} - a_{22})b_{11} + a_{22}(b_{11} + b_{21})\\
 \end{align*}
 
 \bigskip
-\begin{align*}
-c_{22} &= -(a_{21} - a_{22})b_{11} - a_{11}(b_{12} + b_{22}) + (a_{11} + a_{22})(b_{22} - b_{11}) + (a_{11} + a_{21})(b_{11} + b_{12})\\
-&= a_{21}b_{11} + a_{22}b_{11} - a_{11}b_{12} - a_{11}b_{12} + a_{11}b_{22} - a_{11}b_{11} + a_{22}b_{22} - a{22}b_{11} + a_{11}b_{11} + a_{11}b_{12} + a_{21}b_{11} + b_{21}b_{12}\\
-&= a_{21}b_{12} + a_{22}b_{22}\\
-\end{align*}
+\begin{equation*}
+c_{22} = -(a_{21} - a_{22})b_{11} - a_{11}(b_{12} + b_{22}) + (a_{11} + a_{22})(b_{22} - b_{11}) + (a_{11} + a_{21})(b_{11} + b_{12})\\
+\end{equation*}
+\begin{equation*}
+= a_{21}b_{11} + a_{22}b_{11} - a_{11}b_{12} - a_{11}b_{12} + a_{11}b_{22} - a_{11}b_{11} + a_{22}b_{22} - a{22}b_{11} + a_{11}b_{11} + a_{11}b_{12} + a_{21}b_{11} + b_{21}b_{12}\\
+\end{equation*}
+\begin{equation*}
+= a_{21}b_{12} + a_{22}b_{22}\\
+\end{equation*}
 Les calculs effectués en partant des équations résultantes des formules de Strassen donnent bien le résultat de l'algorithme naïf de multiplication matricielle.
 
 \paragraph{Question 3}
@@ -246,12 +260,19 @@ Le benchmarking de l'algorithme à été effectué en executant les deux algorit
 % Si t'as une idée d'opti, le code est sur le repo. J'ai tenté à coup d'Azure functions, ça reste délirant
 % Le tableau dépasse du PDF, je sais pas si c'est possible de faire mieux, ou s'il faut le split
 $\begin{array}{ *{13}{c} }
-k & 1 & 2 & 4 & 8 & 16 & 32 & 64 & 128 & 256 & 512 & 1024 & 2048 \\
-Classique & 0,000042 & 0,000039 & 0,000118 & 0,000729 & 0,005180 & 0,037036 & 0,269134 & 2,302152 & 18,434917 & 148,468258 & 1143,45661 & 9189,38358 \\
-Strassen & 0,000010 & 0,000161 & 0,001028 & 0,008187 & 0,051670 & 0,361173 & 2,587751 & 18,336071 & 129,776649 & 878,765119 & 6224,82734 & 42726,193543
+k & 1 & 2 & 4 & 8 & 16 & 32 & 64  \\
+Classique & 0,000042 & 0,000039 & 0,000118 & 0,000729 & 0,005180 & 0,037036 & 0,269134  \\
+Strassen & 0,000010 & 0,000161 & 0,001028 & 0,008187 & 0,051670 & 0,361173 & 2,587751
 \end{array}$
-\\
 
+\bigskip
+$\begin{array}{ *{13}{c} }
+k & 128 & 256 & 512 & 1024 & 2048 \\
+Classique& 2,302152 & 18,434917 & 148,468258 & 1143,45661 & 9189,38358 \\
+Strassen & 18,336071 & 129,776649 & 878,765119 & 6224,82734 & 42726,193543
+\end{array}$
+
+\bigskip
 Selon nos données, Strassen ne semble jamais surpasser l'algorithme classique. Au vu de ce résultat, nous pouvons déterminer que l'implémentation de notre algorithme souffre d'un problème d'optimisation, notamment dans l'initialisation des matrices de taille $2^{k-1}$\\
 
 L'algorithme de Strassen n'est utile que sur des matrices d'une taille suffisamment important. Pour des tailles plus petite, il est alors plus intéressant d'utiliser l'algorithme de multiplication classique.\\
